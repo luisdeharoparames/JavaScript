@@ -1,0 +1,11 @@
+#formID input{
+    padding: 1rem;
+}
+
+.input{
+    border: 1px solid red;
+}
+
+.tabla{
+    border: 1px solid;
+}
