@@ -1,3 +1,11 @@
 #formID input{
     padding: 1rem;
 }
+
+.tableCSS {
+    border: 1px solid;
+}
+
+.tdCSS {
+    border-right: 1px solid;
+}
