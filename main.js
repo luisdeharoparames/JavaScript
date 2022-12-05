@@ -14,6 +14,7 @@ const MONTHS = {
 };
 
 const locale = "es";
+const yearDate = 2022;
 
 (() => {
   const form = document.getElementById("myForm");
@@ -26,9 +27,9 @@ const locale = "es";
     const { isExists, month: monthName } = monthExists(month);
     if (isExists) {
       createTable(monthName, 2022);
-    }else {
+    } else {
       const div = document.getElementById("renderTable");
-      div.innerText = "El dato introducido no es un mes"
+      div.innerText = "El dato introducido no es un mes";
     }
   });
 
@@ -41,16 +42,23 @@ const locale = "es";
   };
 
   const createTable = (month, year) => {
-    const div = document.getElementById("renderTable");ss
+    console.log(month);
+    console.log(year);
+    const div = document.getElementById("renderTable");
     div.innerText = "";
-    // const date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
+
     const container = document.createElement("div");
     container.classList.add("boxCalendar");
     const intl = new Intl.DateTimeFormat(locale, { month: "long" });
-    const monthName = intl.format(new Date(year, month))
-    const title = document.createElement("h1")
-    title.innerText = `${monthName} ${year}`
-    div.append(title)
+    const monthName = intl.format(new Date(year, month));
+    const title = document.createElement("h1");
+    title.innerText = `${monthName} ${year}`;
+    //Month Year Number
+    const monthNumber = month;
+    const yearNumber = year;
+    getDaysMonth(monthNumber, yearNumber);
+
+    div.append(title);
     getDaysWeek(locale, container);
     div.append(container);
   };
@@ -66,4 +74,23 @@ const locale = "es";
       container.append(dayBox);
     });
   };
+
+  const getDaysMonth = (month, year) => {
+    console.log("getDaysMonth: " + month, year);
+    const dayMonth =  ( new Date(year, month, 0).getDate());
+    console.log("Dias del mes: " + dayMonth);
+    printDaysMonth(dayMonth);
+
+  };
+
+  const printDaysMonth = (dayMonth) => {
+    const divDays = document.createElement("div");
+    if(dayMonth == 31){
+      for(let i = 1; i < dayMonth + 1; i++){
+        divDays.innerText = i;
+      }
+    }
+  }
+
 })();
+
